@@ -3,6 +3,7 @@
     [ring.adapter.jetty :as ring]
     [ring.middleware.resource :as resource]
     [ring.middleware.file-info :as file-info]
+    [ring.middleware.stacktrace :as stacktrace]
     [sangu.util :as util]
   )
 )
@@ -20,6 +21,7 @@
     (resource/wrap-resource "public")
     (file-info/wrap-file-info)
     (util/wrap-request-logging)
+    (stacktrace/wrap-stacktrace)
   )
 )
 
