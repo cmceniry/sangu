@@ -1,8 +1,9 @@
-(ns ws.server
+(ns sangu.server
   (:require
     [ring.adapter.jetty :as ring]
     [ring.middleware.resource :as resource]
     [ring.middleware.file-info :as file-info]
+    [sangu.util :as util]
   )
 )
 
@@ -18,6 +19,7 @@
   (-> myhandler
     (resource/wrap-resource "public")
     (file-info/wrap-file-info)
+    (util/wrap-request-logging)
   )
 )
 
