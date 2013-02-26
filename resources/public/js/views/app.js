@@ -1,12 +1,16 @@
+define([
+  'backbone',
+  'backbone_localStorage'
+], function() {
+  var AppView = Backbone.View.extend({
 
-var app = app || {};
+    el: '#sangu',
 
-app.AppView = Backbone.View.extend({
+    initialize: function() {
+      alert('ALERT!');
+    }
 
-  el: '#sangu',
+  });
 
-  initialize: function() {
-    alert('ALERT!');
-  }
-
+  return AppView;
 });

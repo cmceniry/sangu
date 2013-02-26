@@ -1,8 +1,14 @@
+define([
+  'backbone',
+  'backbone_localStorage'
+], function() {
+  var StepView = Backbone.View.extend({
 
-app.StepView = Backbone.View.extend({
+    tagName: 'li',
 
-  tagName: 'li',
+    template: _.template( $('#step-tmpl').html() )
 
-  template: _.template( $('#step-tmpl').html() )
+  });
 
+  return StepView
 });

@@ -2,12 +2,15 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'backbone.localStorage',
-], function($, _, Backbone, Backbone-localStorage) {
+  'backbone_localStorage',
+], function($, _, Backbone, BackboneLocalStorage) {
   var initialize = function() {
+    window.alert("foo!");
   };
 
   return {
-    initialize: initialize
+    initialize: function() {
+      window.app("foo");
+    }
   };
 });

@@ -1,23 +1,26 @@
+define([
+  'models/step',
+  'backbone',
+  'backbone_localStorage'
+], function(Step) {
+  var StepList = Backbone.Collection.extend({
 
-var app = app || {};
+    model: Step,
 
-var StepList = Backbone.Collection.extend({
+    localStorage: new Backbone.LocalStorage('steps-bb'),
 
-  model: app.Step,
+    nextOrder: function() {
+      if ( !this.length ) {
+        return 1;
+      };
+      return this.last().get('order') + 1;
+    },
 
-  localStorage: new Backbone.LocalStorage('steps-bb'),
+    comparator: function( step ) {
+      return step.get('order');
+    }
 
-  nextOrder: function() {
-    if ( !this.length ) {
-      return 1;
-    };
-    return this.last().get('order') + 1;
-  },
+  });
 
-  comparator: function( step ) {
-    return step.get('order');
-  }
-
+  return StepList
 });
-
-app.Steps = new StepList();

@@ -1,11 +1,15 @@
+define([
+  'backbone',
+  'backbone_localStorage'
+], function() {
 
-var app = app || {};
+  var Step = Backbone.Model.extend({
+    defaults: {
+      short: '',
+      long: ''
+    }
+  });
 
-app.Steps = Backbone.Model.extend({
-
-  defaults: {
-    short: '',
-    long: ''
-  },
-
+  return Step;
 });
+
