@@ -1,0 +1,13 @@
+<form class="edit-step-form">
+  <legend><%= step ? "Edit" : "Create" %> Step</legend>
+  <label>Long</label>
+  <input type="text" name="long" value="<%= step ? step.get("long") : "" %>"/>
+  <label>Short</label>
+  <input type="text" name="short" value="<%= step ? step.get("short") : "" %>"/>
+  <hr />
+  <button type="submit" class="btn"><%= step ? "Update" : "Create" %></button>
+  <% if (step) { %>
+  <input type="hidden" name="id" value="<%= step.id %>">
+  <button data-step-id="<% step.id %>" class='delete'>Delete</button>
+  <% }; %>
+</form>

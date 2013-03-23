@@ -4,6 +4,9 @@ define([
 ], function() {
 
   var Step = Backbone.Model.extend({
+
+    localStorage: new Backbone.LocalStorage('steps-bb'),
+
     defaults: {
       short: '',
       long: ''

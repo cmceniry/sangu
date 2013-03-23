@@ -1,12 +1,13 @@
 define([
+  'text!views/step.edit.html',
   'backbone',
   'backbone_localStorage'
-], function() {
+], function(StepHTML) {
   var StepView = Backbone.View.extend({
 
     tagName: 'li',
 
-    template: _.template( $('#step-tmpl').html() )
+    template: _.template( StepHTML )
 
   });
 

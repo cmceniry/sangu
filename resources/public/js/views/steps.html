@@ -1,0 +1,19 @@
+<a href="#/new">New</a>
+<table class="table stripped">
+  <thead>
+    <tr>
+      <th>Long</th>
+      <th>Short</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<% _.each(steps, function(step) { %>
+      <tr>
+        <td><%= step.get("long")%></td>
+        <td><%= step.get("short")%></td>
+        <td><a href="#/edit/<%= step.id %>">Edit</a></td>
+      </tr>
+<% }); %>
+  </tbody>
+</table>
