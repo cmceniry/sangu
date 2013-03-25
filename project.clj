@@ -6,6 +6,9 @@
                  [ring/ring-core "1.1.0"],
                  [ring/ring-jetty-adapter "1.1.0"]
                  [ring/ring-devel "1.1.0"]
+                 [ring/ring-json "0.2.0"]
+                 [compojure "1.1.5"]
+                 [org.clojure/data.json "0.2.1"]
                 ]
 )
 
