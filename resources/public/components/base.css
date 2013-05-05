@@ -1,0 +1,114 @@
+html {
+        //margin: 0;
+        padding: 0;
+	background: #90a5b6;
+}
+
+body {
+        font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 1.4em;
+        //background: #eaeaea url('bg.png');
+        //color: #4d4d4d;
+        //width: 100%;
+        //margin: 0 auto;
+        //-webkit-font-smoothing: antialiased;
+        //-moz-font-smoothing: antialiased;
+        //-ms-font-smoothing: antialiased;
+        //-o-font-smoothing: antialiased;
+        //font-smoothing: antialiased;
+}
+
+#title {
+	position: relative;
+	width: 96%;
+	padding: 1%;
+	margin: 1%;
+	text-align: center;
+	background: #d9d9d9;
+}
+
+#search {
+	float: left;
+	background: #d9d9d9;
+        //border: 1px solid #ccc;
+        //box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+        //                        0 25px 50px 0 rgba(0, 0, 0, 0.15);
+	width: 26%%;
+	height: 600px;
+	margin: 1%;
+	padding: 1%;
+	overflow: scroll;
+}
+
+#search input {
+	width: 96%;
+}
+
+#search-results {
+  list-style: none;
+  padding: 0px;
+}
+
+#sangu {
+	float: right;
+	background: #d9d9d9;
+        //order: 1px solid #ccc;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        //box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+        //                        0 25px 50px 0 rgba(0, 0, 0, 0.15);
+	width: 66%;
+	padding: 1%;
+	margin: 1%;
+	height: 600px;
+	overflow: scroll;
+}
+
+#sangu h1 {
+        //position: absolute;
+        //top: 0px;
+        //width: 100%;
+        //font-size: 70px;
+        //font-weight: bold;
+        //text-align: center;
+        //color: #b3b3b3;
+        //color: rgba(255, 255, 255, 0.3);
+        //text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+        //-webkit-text-rendering: optimizeLegibility;
+        //-moz-text-rendering: optimizeLegibility;
+        //-ms-text-rendering: optimizeLegibility;
+        //-o-text-rendering: optimizeLegibility;
+        //text-rendering: optimizeLegibility;
+}
+
+
+#step-list span.completed {
+  color: #a9a9a9;
+  text-decoration: line-through;
+}
+
+#step-list span.completedtime {
+  float: right;
+  text-decoration: none;
+  text-align: right;
+}
+
+#step-list li {
+	border-top: solid 1px;
+	padding: 10px 2px;
+}
+
+#step-info-full {
+	background: #cacaca;
+	padding: 10px;
+}
+
+#step-list {
+  list-style: none;
+  padding: 10px;
+}
+
+#step-list input {
+  visible: false;
+}
+

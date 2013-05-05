@@ -1,0 +1,12 @@
+
+      <section id="main" ng-show="checklist != null">
+        <h1>{{checklist.name}} | Steps</h1>
+        <ul id="step-list">
+          <li ng-repeat="step in checklist.steps">
+            <div ng-class="{completed: isCompleted(step)}">{{step.text}}</div>
+            <div class="completedtime" ng-show="step.completed != null">({{step.completed.toLocaleString()}})</div>
+            <div><input class="toggle" type="checkbox" ng-show="step.completed == null" ng-click="toggleCompleted(step)" ng-disabled="isDisabled(step)"></div>
+          </li>
+        </ul>
+      </section>
+

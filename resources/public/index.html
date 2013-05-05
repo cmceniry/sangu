@@ -1,14 +1,21 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app="sanguApp">
   <head>
-    <script data-main="js/main" src="js/lib/require.js"></script>
-    <section id="sangu">
-      <h1>Sangu</h1>
-      <div class="steps"></div>
-    </section>
-    <section id="macmac">
-    </section>
+    <title>Sangu : Checklist Manager</title>
+    <link rel="stylesheet" href="components/base.css">
+    <link rel="shortcut icon" href="about:blank">
   </head>
   <body>
-
+    <section id="title">
+      <h1>SANGU</h1>
+    </section>
+    <section id="search" ng-controller="SearchCtrl">
+      <ng-include src="'partials/search.html'">
+    </section>
+    <section id="sangu" ng-controller="ListCtrl" ng-view>
+    </section>
+    <script src="components/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
   </body>
 </html>
