@@ -8,6 +8,8 @@ sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) 
   $scope.rp = $routeParams;
   if ($scope.rp.id != null) $scope.checklist = Checklist[$scope.rp.id];
 
+  $scope.newStep = {};
+
   if ($scope.checklist != null) {
     $scope.checklist_id = $scope.checklist.id;
     $scope.checklist_name = $scope.checklist.name;
@@ -40,6 +42,20 @@ sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) 
 
   $scope.showFull = function(step) {
     return step.show;
+  }
+
+  $scope.addStep = function() {
+    console.log("Submitting");
+    if (!$scope.newStep.text.length && !$scope.newStep.full.length) {
+      return;
+    }
+
+    $scope.checklist.steps.push({
+      text: $scope.newStep.text,
+      full:  $scope.newStep.full
+    });
+
+    $scope.newStep = {};
   }
 
 });
