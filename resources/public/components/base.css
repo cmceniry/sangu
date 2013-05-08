@@ -96,6 +96,15 @@ body {
 #step-list li {
 	border-top: solid 1px;
 	padding: 10px 2px;
+	display: block;
+}
+
+.edit {
+	width: 90%;
+}
+
+textarea {
+	height: 60px;
 }
 
 #step-info-full {

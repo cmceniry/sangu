@@ -58,6 +58,29 @@ sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) 
     $scope.newStep = {};
   }
 
+  $scope.moveUp = function(idx) {
+    var tmpSteps = $scope.checklist.steps.slice(0);
+    var movingStep = tmpSteps.splice(idx,1)[0];
+    tmpSteps.splice(idx-1,0,movingStep);
+    $scope.checklist.steps = tmpSteps;
+  };
+
+  $scope.moveDown = function(idx) {
+    var tmpSteps = $scope.checklist.steps.slice(0);
+    var movingStep = tmpSteps.splice(idx,1)[0];
+    tmpSteps.splice(idx+1,0,movingStep);
+    $scope.checklist.steps = tmpSteps;
+  };
+
+  $scope.deleteStep = function(idx) {
+    var tmpSteps = $scope.checklist.steps.slice(0);
+    tmpSteps.splice(idx,1);
+    $scope.checklist.steps = tmpSteps;
+  };
+
+  $scope.updateChecklist = function() {
+  };
+
 });
 
 

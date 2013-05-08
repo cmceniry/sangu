@@ -1,0 +1,28 @@
+
+      <section id="main" ng-show="checklist != null">
+        <form ng-submit="">
+        <h1><input ng-model="checklist.name"></h1>
+              <button ng-click="updateChecklist()">Save</button>
+        <ul id="step-list">
+          <li ng-repeat="step in checklist.steps">
+              <div id="step-info-text">
+                <input id="step-info-text" class="edit" ng-model="step.text">
+              </div>
+              <button ng-click="moveUp($index)" ng-disabled="$index==0">Up</button>
+              <button ng-click="moveDown($index)" ng-disabled="$index+1 == checklist.steps.length">Down</button>
+              <button ng-click="deleteStep($index)">Delete</button>
+              <div id="step-info-full">
+                <textarea type="text" id="step-info-full" class="edit" ng-model="step.full">
+              </div>
+            </form>
+          </li>
+          <li>
+            <form id="step-form" ng-submit="addStep()">
+              <input id="new-step-text" placeholder="Short Description" ng-model="newStep.text"/>
+              <input id="new-step-full" placeholder="Full Description" ng-model="newStep.full"/>
+              <button class="submit">Add Step</button>
+            </form>
+          </li>
+        </ul>
+      </section>
+

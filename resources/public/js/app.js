@@ -13,6 +13,7 @@ var sanguApp = angular.module('sanguApp', [], function ($compileProvider) {
 sanguApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {}).
+    when('/edit/:id', {templateUrl:'partials/edit.html', controller: 'ListCtrl'}).
     when('/list/:id', {templateUrl:'partials/list.html', controller: 'ListCtrl'}).
     otherwise({});
 }]);

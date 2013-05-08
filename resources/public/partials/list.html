@@ -1,21 +1,11 @@
 
       <section id="main" ng-show="checklist != null">
-        <h1>{{checklist.name}} | Steps</h1>
+        <h1>{{checklist.name}}</h1>
+	<h1>Steps</h1>
         <ul id="step-list">
           <li ng-repeat="step in checklist.steps">
-            <div id="step-info-short">
-              {{step.text}}
-            </div>
-            <div id="step-info-full">
-              {{step.full}}
-            </div>
-          </li>
-          <li>
-            <form id="step-form" ng-submit="addStep()">
-              <input id="new-step-text" placeholder="Short Description" ng-model="newStep.text"/>
-              <input id="new-step-full" placeholder="Full Description" ng-model="newStep.full"/>
-              <button class="submit">Add Step</button>
-            </form>
+            <div id="step-info-text">{{step.text}}</div>
+            <div id="step-info-full">{{step.full}}</div>
           </li>
         </ul>
       </section>
