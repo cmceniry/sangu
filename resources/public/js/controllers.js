@@ -78,6 +78,16 @@ sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) 
     $scope.checklist.steps = tmpSteps;
   };
 
+  $scope.addStep = function() {
+    $scope.checklist.steps.push({
+      text: $scope.newStep.text,
+      full: $scope.newStep.full
+    });
+    $scope.newStep = {};
+    // It'd be nice to change the focus to go back to the newStep's Short
+    // Description.
+  }
+
   $scope.updateChecklist = function() {
   };
 
