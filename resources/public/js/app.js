@@ -15,6 +15,7 @@ sanguApp.config(['$routeProvider', function($routeProvider) {
     when('/', {}).
     when('/edit/:id', {templateUrl:'partials/edit.html', controller: 'ListCtrl'}).
     when('/list/:id', {templateUrl:'partials/list.html', controller: 'ListCtrl'}).
+    when('/new', {templateUrl:'partials/new.html', controller: 'ListCtrl'}).
     otherwise({});
 }]);
 

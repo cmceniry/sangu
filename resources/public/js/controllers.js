@@ -1,6 +1,6 @@
 
 
-sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) {
+sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, Checklist) {
 
   $scope.data = Data;
 
@@ -89,6 +89,16 @@ sanguApp.controller('ListCtrl', function($scope, $routeParams, Data, Checklist) 
   }
 
   $scope.updateChecklist = function() {
+  };
+
+  $scope.addChecklist = function() {
+    var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+    Checklist[id] = {
+      id: id,
+      name: $scope.checklist_name,
+      steps: []
+    };
+    $location.path( "/edit/" + id );
   };
 
 });
