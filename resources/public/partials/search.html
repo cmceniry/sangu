@@ -1,5 +1,7 @@
 
-      <input type="text" name="query" ng-model="data.message" placeholder="Search!"/>
+      <form ng-submit="search()">
+      <input type="text" name="query" ng-model="searchString" placeholder="Search!"/>
+      </form>
       <ul id="search-results">
         <li ng-repeat="result in results">
           <a href="#/list/{{result.id}}">{{result.name}}</a>

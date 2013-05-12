@@ -102,5 +102,11 @@ sanguApp.controller('SearchCtrl', function($scope, Data, Checklist) {
 
   for (var key in $scope.checklist) $scope.results.push($scope.checklist[key]);
 
+  $scope.search = function() {
+    var results = [];
+    for (var key in Checklist) results.push(Checklist[key]);
+    $scope.results = results;
+  };
+
 });
 
