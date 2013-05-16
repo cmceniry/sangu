@@ -101,6 +101,26 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     $location.path( "/edit/" + id );
   };
 
+  $scope.download = function() {
+    var cl = {
+      'name' : $scope.checklist.name,
+      'steps' : []
+    };
+    $scope.checklist.steps.forEach(
+      function (s) {
+        cl.steps.push({
+          'text': s.text,
+          'full': s.full
+        });
+      }
+    );
+    var clblob = new Blob([JSON.stringify(cl, undefined, 2)], {'type':'application/json'});
+    var dl = document.createElement("a");
+    dl.href = window.webkitURL.createObjectURL(clblob);
+    dl.download = "";
+    dl.click();
+  };
+
 });
 
 
