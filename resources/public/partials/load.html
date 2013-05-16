@@ -1,0 +1,9 @@
+
+      <section id="main">
+        <form>
+          <input type="file" onchange="angular.element(this).scope().setFile(this)"/>
+          <button ng-click="loadChecklist()" ng-disabled="fileinfo == ''">Load</button>
+        </form>
+        <div id="load-preview">{{fileinfo}}</div>
+      </section>
+

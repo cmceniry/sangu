@@ -121,3 +121,9 @@ textarea {
   visible: false;
 }
 
+#load-preview {
+	background: #cacaca;
+	padding: 10px;
+	white-space: pre;
+	overflow: scroll;
+}

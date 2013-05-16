@@ -10,6 +10,8 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
 
   $scope.newStep = {};
 
+  $scope.fileinfo = "";
+
   if ($scope.checklist != null) {
     $scope.checklist_id = $scope.checklist.id;
     $scope.checklist_name = $scope.checklist.name;
@@ -119,6 +121,45 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     dl.href = window.webkitURL.createObjectURL(clblob);
     dl.download = "";
     dl.click();
+  };
+
+  $scope.setFile = function(element) {
+    $scope.$apply(function($scope) {
+      $scope.fileinfo = "notloaded";
+      var fileToLoad = element.files[0];
+      var fileReader = new FileReader();
+      fileReader.onload = function(fileLoadedEvent)  {
+        console.log(fileLoadedEvent.target.result);
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        $scope.fileinfo = textFromFileLoaded;
+        $scope.$apply();
+      };
+      fileReader.readAsText(fileToLoad, "UTF-8");
+    });
+  };
+
+  $scope.loadChecklist = function() {
+    var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+    var rs = {
+      id: id,
+      steps: []
+    };
+    try {
+      var cl = JSON.parse($scope.fileinfo);
+      if (cl.name) {
+        rs.name = cl.name;
+        cl.steps.forEach(function (s) {
+          rs.steps.push({
+            'text': s.text,
+            'full': s.full
+          });
+        });
+        $location.path( "/edit/" + id );
+      }
+      Checklist[id] = rs;
+    } catch (err) {
+      console.log("Unable to parse");
+    }
   };
 
 });
