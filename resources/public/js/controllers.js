@@ -4,9 +4,24 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
 
   $scope.data = Data;
 
+  checklistOriginal = null;
   $scope.checklist = null;
   $scope.rp = $routeParams;
   if ($scope.rp.id != null) $scope.checklist = Checklist.fetch($scope.rp.id);
+  if ($scope.checklist != null) {
+    var cl = {
+      id : $scope.checklist.id,
+      name : $scope.checklist.name,
+      steps : []
+    };
+    $scope.checklist.steps.forEach( function(s) {
+      cl.steps.push({
+        text : s.text,
+        full : s.full
+      });
+    });
+    checklistOriginal = cl;
+  };
 
   $scope.newStep = {};
 
@@ -90,7 +105,38 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     // Description.
   }
 
+  $scope.clean = function() {
+    if ($scope.checklist == null && checklistOriginal == null) return true;
+    if ($scope.checklist == null || checklistOriginal == null) return false;
+    if ($scope.checklist.id != checklistOriginal.id) return false;
+    if ($scope.checklist.name != checklistOriginal.name) return false;
+    if ($scope.checklist.steps.length != checklistOriginal.steps.length) return false;
+    for (var i=0; i<$scope.checklist.steps.length; i++) {
+      if ($scope.checklist.steps[i].text != checklistOriginal.steps[i].text) return false;
+      if ($scope.checklist.steps[i].full != checklistOriginal.steps[i].full) return false;
+    }
+    if (!isBlank($scope.newStep.text) || !isBlank($scope.newStep.full)) return false;
+    return true;
+  }
+
   $scope.updateChecklist = function() {
+    var cl = {
+      id: $scope.checklist.id,
+      name: $scope.checklist.name,
+      steps: []
+    }
+    $scope.checklist.steps.forEach( function(s) {
+      cl.steps.push({text:s.text, full:s.full});
+    });
+    if (!isBlank($scope.newStep.text) || !isBlank($scope.newStep.full)) {
+      cl.steps.push({
+        text: $scope.newStep.text,
+        full:  $scope.newStep.full
+      });
+    }
+    $scope.checklist = Checklist.update(cl);
+    checklistOriginal = cl;
+    $scope.newStep = {};
   };
 
   $scope.addChecklist = function() {

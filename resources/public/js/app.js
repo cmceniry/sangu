@@ -56,5 +56,10 @@ sanguApp.service('Checklist', function() {
     localStorage.setItem('sangu.cllist', cllistString);
   };
 
+  this.update = function(cl) {
+    localStorage.setItem('sangu.cl.' + cl.id, JSON.stringify(cl));
+    return cl;
+  };
+
 });
 

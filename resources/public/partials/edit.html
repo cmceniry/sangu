@@ -2,7 +2,7 @@
       <section id="main" ng-show="checklist != null">
         <form ng-submit="">
         <h1><input ng-model="checklist.name"></h1>
-              <button ng-click="updateChecklist()">Save</button>
+              <button ng-disabled="clean()" ng-click="updateChecklist()">Save</button>
         <ul id="step-list">
           <li ng-repeat="step in checklist.steps">
               <div id="step-info-text">
