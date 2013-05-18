@@ -61,5 +61,15 @@ sanguApp.service('Checklist', function() {
     return cl;
   };
 
+  this.remove = function(id) {
+    var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    var idx = cllist.indexOf(id);
+    if (idx>=0) {
+      cllist.splice(idx,1);
+      localStorage.removeItem('sangu.cl.' + id);
+      localStorage.setItem('sangu.cllist', JSON.stringify(cllist));
+    };
+  };
+
 });
 

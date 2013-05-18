@@ -25,6 +25,8 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
 
   $scope.newStep = {};
 
+  deleteFlag = false;
+
   $scope.fileinfo = "";
 
   if ($scope.checklist != null) {
@@ -204,6 +206,20 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     } catch (err) {
       console.log("Unable to parse");
     }
+  };
+
+  $scope.readyDelete = function() {
+    deleteFlag = deleteFlag ? false : true;
+  };
+
+  $scope.isDeleteReady = function() {
+    return deleteFlag;
+  };
+
+  $scope.confirmDelete = function() {
+    Checklist.remove($scope.checklist.id);
+    deleteFlag = false;
+    $location.path('/');
   };
 
 });
