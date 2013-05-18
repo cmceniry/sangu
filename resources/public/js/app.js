@@ -24,34 +24,37 @@ sanguApp.factory('Data', function() {
   return {message: ""};
 });
 
-sanguApp.factory('Checklist', function() {
-  var checklist = {};
+sanguApp.service('Checklist', function() {
 
-  checklist['7084a7e5-c4fa-485b-a84c-2d3f624daf52'] = {
-    id: '7084a7e5-c4fa-485b-a84c-2d3f624daf52',
-    name: 'First Checklist',
-    steps: [
-      {text: "This is the first item. Here is some filler text to see what happens.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."},
-      {text: "This is the second item.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."},
-      {text: "This is the third item.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."}
-    ]
-  };
-  checklist['849322c7-d51c-4300-bf23-8c6855dfd670'] = {
-    id: '849322c7-d51c-4300-bf23-8c6855dfd670',
-    name: 'Second Checklist',
-    steps: [
-      {text: "First item of the second list.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."},
-      {text: "Second item of the second list.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."},
-      {text: "Third item of the second list.",
-       full: "This is the full description of this step. It's supposed to have many many more items of use. But right now it's just something to fill up space."}
-    ]
+  this.generateId = function() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
   };
 
-  return checklist;
+  this.list = function() {
+    var result = [];
+    var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    cllist.forEach( function(id) {
+      var cl = JSON.parse(localStorage.getItem('sangu.cl.' + id));
+      result.push({
+        "id" : cl.id,
+        "name" : cl.name
+      });
+    });
+    return result;
+  };
+
+  this.fetch = function(id) {
+    return JSON.parse(localStorage.getItem('sangu.cl.' + id));
+  };
+
+  this.add = function(cl) {
+    var clString = JSON.stringify(cl);
+    var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    cllist.push(cl.id);
+    var cllistString = JSON.stringify(cllist);
+    localStorage.setItem('sangu.cl.' + cl.id, clString);
+    localStorage.setItem('sangu.cllist', cllistString);
+  };
+
 });
 

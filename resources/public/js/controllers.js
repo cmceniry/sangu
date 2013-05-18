@@ -6,7 +6,7 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
 
   $scope.checklist = null;
   $scope.rp = $routeParams;
-  if ($scope.rp.id != null) $scope.checklist = Checklist[$scope.rp.id];
+  if ($scope.rp.id != null) $scope.checklist = Checklist.fetch($scope.rp.id);
 
   $scope.newStep = {};
 
@@ -94,12 +94,11 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
   };
 
   $scope.addChecklist = function() {
-    var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
-    Checklist[id] = {
-      id: id,
+    Checklist.add({
+      id: Checklist.generateId(),
       name: $scope.checklist_name,
       steps: []
-    };
+    });
     $location.path( "/edit/" + id );
   };
 
@@ -139,9 +138,8 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
   };
 
   $scope.loadChecklist = function() {
-    var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
     var rs = {
-      id: id,
+      id: Checklist.generateId(),
       steps: []
     };
     try {
@@ -154,9 +152,9 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
             'full': s.full
           });
         });
+        Checklist.add(rs);
         $location.path( "/edit/" + id );
       }
-      Checklist[id] = rs;
     } catch (err) {
       console.log("Unable to parse");
     }
@@ -168,15 +166,10 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
 sanguApp.controller('SearchCtrl', function($scope, Data, Checklist) {
 
   $scope.data = Data;
-  $scope.checklist = Checklist;
   $scope.results = [];
 
-  for (var key in $scope.checklist) $scope.results.push($scope.checklist[key]);
-
   $scope.search = function() {
-    var results = [];
-    for (var key in Checklist) results.push(Checklist[key]);
-    $scope.results = results;
+    $scope.results = Checklist.list();
   };
 
 });
