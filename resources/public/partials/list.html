@@ -1,8 +1,8 @@
 
       <section id="main" ng-show="checklist != null">
         <h1>{{checklist.name}}</h1>
-        <button ng-click="download()">Download</button>
-        <button ng-click="gotoEdit()">Edit</button>
+        <button class="btn btn-primary" ng-click="download()"><i class="icon-file"></i> Download</button>
+        <button class="btn btn-primary" ng-click="gotoEdit()"><i class="icon-edit"></i> Edit</button>
 	<h1>Steps</h1>
         <ul id="step-list">
           <li ng-repeat="step in checklist.steps">

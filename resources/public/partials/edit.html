@@ -2,18 +2,18 @@
       <section id="main" ng-show="checklist != null">
         <form ng-submit="">
         <h1><input ng-model="checklist.name"></h1>
-              <button ng-disabled="clean()" ng-click="updateChecklist()">Save</button>
-              <button ng-click="cancelEdit()">Cancel</button>
-              <button ng-click="readyDelete()">Delete</button>
-              <button ng-disabled="!isDeleteReady()" ng-click="confirmDelete()">Confirm Delete</button>
+              <button class="btn btn-primary" ng-disabled="clean()" ng-click="updateChecklist()">Save</button>
+              <button class="btn btn-primary" ng-click="cancelEdit()">Cancel</button>
+              <button class="btn btn-warning" ng-click="readyDelete()">Delete</button>
+              <button class="btn btn-danger" ng-disabled="!isDeleteReady()" ng-click="confirmDelete()">Confirm Delete</button>
         <ul id="step-list">
           <li ng-repeat="step in checklist.steps">
               <div id="step-info-text">
                 <input id="step-info-text" class="edit" ng-model="step.text">
               </div>
-              <button ng-click="moveUp($index)" ng-disabled="$index==0">Up</button>
-              <button ng-click="moveDown($index)" ng-disabled="$index+1 == checklist.steps.length">Down</button>
-              <button ng-click="deleteStep($index)">Delete</button>
+              <button class="btn btn-small" ng-click="moveUp($index)" ng-disabled="$index==0"><i class="icon-arrow-up"></i></button>
+              <button class="btn btn-small" ng-click="moveDown($index)" ng-disabled="$index+1 == checklist.steps.length"><i class="icon-arrow-down"></i></button>
+              <button class="btn btn-small" ng-click="deleteStep($index)"><i class="icon-trash"></i></button>
               <div id="step-info-full">
                 <textarea type="text" id="step-info-full" class="edit" ng-model="step.full"></textarea>
               </div>
@@ -24,7 +24,7 @@
             </div>
             <div id="step-info-full">
               <textarea id="step-info-full" class="edit" placeholder="Full Description" ng-model="newStep.full"></textarea>
-              <button ng-click="addStep()">Add Step</button>
+              <button class="btn btn-primary btn-small" ng-click="addStep()">Add Step</button>
             </div>
           </li>
         </ul>
