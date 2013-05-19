@@ -139,6 +139,7 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     $scope.checklist = Checklist.update(cl);
     checklistOriginal = cl;
     $scope.newStep = {};
+    $location.path("/list/" + $scope.rp.id);
   };
 
   $scope.addChecklist = function() {
@@ -222,16 +223,32 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     $location.path('/');
   };
 
+  $scope.gotoEdit = function() {
+    $location.path("/edit/" + $scope.rp.id);
+  };
+
+  $scope.cancelEdit = function() {
+    $location.path("/list/" + $scope.rp.id);
+  };
+
 });
 
 
-sanguApp.controller('SearchCtrl', function($scope, Data, Checklist) {
+sanguApp.controller('SearchCtrl', function($scope, $location, Data, Checklist) {
 
   $scope.data = Data;
   $scope.results = [];
 
   $scope.search = function() {
     $scope.results = Checklist.list();
+  };
+
+  $scope.gotoNew = function() {
+    $location.path("/new");
+  };
+
+  $scope.gotoLoad = function() {
+    $location.path("/load");
   };
 
 });

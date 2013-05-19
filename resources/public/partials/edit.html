@@ -2,7 +2,8 @@
       <section id="main" ng-show="checklist != null">
         <form ng-submit="">
         <h1><input ng-model="checklist.name"></h1>
-              <button ng-disabled="clean()" ng-click="updateChecklmst()">Save</button>
+              <button ng-disabled="clean()" ng-click="updateChecklist()">Save</button>
+              <button ng-click="cancelEdit()">Cancel</button>
               <button ng-click="readyDelete()">Delete</button>
               <button ng-disabled="!isDeleteReady()" ng-click="confirmDelete()">Confirm Delete</button>
         <ul id="step-list">
