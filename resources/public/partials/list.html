@@ -7,7 +7,7 @@
         <ul id="step-list">
           <li ng-repeat="step in checklist.steps">
             <div id="step-info-text">{{step.text}}</div>
-            <div id="step-info-full">{{step.full}}</div>
+            <div id="step-info-full" class="wiki" ng-bind-html-unsafe="step.full | wikify"></div>
           </li>
         </ul>
       </section>

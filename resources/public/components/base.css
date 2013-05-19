@@ -111,6 +111,13 @@ textarea {
 	background: #cacaca;
 	padding: 10px;
 }
+/* For the wiky.js list to show right. */
+#step-info-full li {
+	margin:0 1.5em;
+	border-top: 0px;
+	display: list-item;
+	padding: 0;
+}
 
 #step-list {
   list-style: none;

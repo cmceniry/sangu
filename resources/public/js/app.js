@@ -73,3 +73,9 @@ sanguApp.service('Checklist', function() {
 
 });
 
+sanguApp.filter('wikify', function() {
+  return function(str) {
+    return Wiky.toHtml(str.replace(/</gm, '&lt;'));
+  };
+});
+
