@@ -280,16 +280,42 @@ sanguApp.controller('RunCtrl', function($scope, $location, $routeParams, Runlist
   if ($routeParams.id != null) 
     $scope.runlist = Runlist.fetch($routeParams.id);
   $scope.currentStep = 0;
+  if ($scope.runlist != null) {
+    $scope.runlist.steps.forEach( function(s) {
+      if (s.doneP) $scope.currentStep += 1;
+    });
+  };
+
+  var cleanupRunlist = function(dirtyRl) {
+    var rl = {
+      'id' : dirtyRl.id,
+      'checklistId': dirtyRl.checklistId,
+      'name': dirtyRl.name,
+      'startTime': dirtyRl.startTime,
+      'steps' : []
+    }
+    dirtyRl.steps.forEach( function(s) {
+      rl.steps.push({
+        'text': s.text,
+        'full': s.full,
+        'doneP': s.doneP,
+        'doneTs': s.doneTs
+      });
+    });
+    return rl;
+  };
 
   $scope.makeDone = function(idx) {
     $scope.runlist.steps[idx].doneP = true;
     $scope.runlist.steps[idx].doneTs = (new Date()).getTime();
+    Runlist.update(cleanupRunlist($scope.runlist));
     $scope.currentStep += 1;
   };
 
   $scope.makeUndone = function(idx) {
     $scope.runlist.steps[idx].doneP = false;
     $scope.runlist.steps[idx].doneTs = null;
+    Runlist.update(cleanupRunlist($scope.runlist));
     $scope.currentStep -= 1;
   };
 
@@ -298,21 +324,7 @@ sanguApp.controller('RunCtrl', function($scope, $location, $routeParams, Runlist
   };
 
   $scope.downloadSummary = function() {
-    var rl = {
-      'id' : $scope.runlist.id,
-      'checklistId': $scope.runlist.checklistId,
-      'name': $scope.runlist.name,
-      'startTime': $scope.runlist.startTime,
-      'steps' : []
-    };
-    $scope.runlist.steps.forEach(function(s) {
-      rl.steps.push({
-        'text': s.text,
-        'full': s.full,
-        'doneP': s.doneP,
-        'doneTs': s.doneTs
-      });
-    });
+    var rl = cleanupRunlist($scope.runlist);
     var rlblob = new Blob([JSON.stringify(rl, undefined, 2)], {'type':'application/json'});
     var dl = document.createElement("a");
     dl.href = window.webkitURL.createObjectURL(rlblob);

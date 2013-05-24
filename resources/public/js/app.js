@@ -94,6 +94,10 @@ sanguApp.service('Runlist', function(Checklist) {
     localStorage.setItem('sangu.rl.' + rl.id, JSON.stringify(rl));
   };
 
+  this.update = function(rl) {
+    localStorage.setItem('sangu.rl.' + rl.id, JSON.stringify(rl));
+  };
+
 });
 
 sanguApp.filter('prettyTime', function() {
