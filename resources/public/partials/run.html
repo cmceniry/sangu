@@ -1,0 +1,15 @@
+
+      <section id="main" ng-show="runlist != null">
+        <h1>{{runlist.name}}</h1>
+	<h1>Steps</h1>
+        <ul id="run-list">
+          <li ng-repeat="step in runlist.steps">
+            <div id="run-info-text">
+              <button ng-show="$index >= currentStep" ng-disabled="$index != currentStep" class="btn btn-mini btn-primary" ng-click="makeDone($index)"><i class="icon-ok-circle"></i></button>
+              <button ng-show="$index < currentStep" ng-disabled="$index != currentStep-1" class="btn btn-mini btn-primary" ng-dblclick="makeUndone($index)">{{step.doneTs | prettyTime}}</button>
+              <span ng-class="strikeClass(step.doneP)">{{step.text}}</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+

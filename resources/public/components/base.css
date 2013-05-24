@@ -134,3 +134,19 @@ textarea {
 	white-space: pre;
 	overflow: scroll;
 }
+
+#run-list li {
+  list-style: none;
+  border-top: solid 1px;
+  padding: 10px 2px;
+  display: block;
+}
+
+#run-info-text {
+  width: 90%;
+}
+
+.doneTrue {
+  text-decoration: line-through;
+}
+

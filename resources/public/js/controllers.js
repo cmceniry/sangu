@@ -1,6 +1,6 @@
 
 
-sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, Checklist) {
+sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, Checklist, Runlist) {
 
   $scope.data = Data;
 
@@ -231,8 +231,28 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
     $location.path("/list/" + $scope.rp.id);
   };
 
-});
+  $scope.gotoRun = function() {
+    var cl = Checklist.fetch($scope.rp.id);
+    var rl = {
+      'id': Runlist.generateId(),
+      'checklistId': cl.id,
+      'name': cl.name,
+      'startTime': (new Date()).getTime(),
+      'steps': []
+    };
+    cl.steps.forEach( function(s) {
+      rl.steps.push({
+        'text': s.text,
+        'full': s.full,
+        'doneP': false,
+        'doneTs': null
+      });
+    });
+    Runlist.add(rl)
+    $location.path("/run/" + rl.id);
+  };
 
+});
 
 sanguApp.controller('SearchCtrl', function($scope, $location, Data, Checklist) {
 
@@ -253,3 +273,28 @@ sanguApp.controller('SearchCtrl', function($scope, $location, Data, Checklist) {
 
 });
 
+sanguApp.controller('RunCtrl', function($scope, $location, $routeParams, Runlist) {
+
+  $scope.runlist = null;
+  $scope.rp = $routeParams;
+  if ($routeParams.id != null) 
+    $scope.runlist = Runlist.fetch($routeParams.id);
+  $scope.currentStep = 0;
+
+  $scope.makeDone = function(idx) {
+    $scope.runlist.steps[idx].doneP = true;
+    $scope.runlist.steps[idx].doneTs = (new Date()).getTime();
+    $scope.currentStep += 1;
+  };
+
+  $scope.makeUndone = function(idx) {
+    $scope.runlist.steps[idx].doneP = false;
+    $scope.runlist.steps[idx].doneTs = null;
+    $scope.currentStep -= 1;
+  };
+
+  $scope.strikeClass = function(doneP) {
+    return doneP ? "doneTrue" : "";
+  };
+
+});

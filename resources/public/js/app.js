@@ -17,6 +17,7 @@ sanguApp.config(['$routeProvider', function($routeProvider) {
     when('/list/:id', {templateUrl:'partials/list.html', controller: 'ListCtrl'}).
     when('/new', {templateUrl:'partials/new.html', controller: 'ListCtrl'}).
     when('/load', {templateUrl:'partials/load.html', controller: 'ListCtrl'}).
+    when('/run/:id', {templateUrl:'partials/run.html', controller: 'RunCtrl'}).
     otherwise({});
 }]);
 
@@ -79,3 +80,25 @@ sanguApp.filter('wikify', function() {
   };
 });
 
+sanguApp.service('Runlist', function(Checklist) {
+
+  this.generateId = function() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+  };
+
+  this.fetch = function(id) {
+    return JSON.parse(localStorage.getItem('sangu.rl.' + id));
+  };
+
+  this.add = function(rl) {
+    localStorage.setItem('sangu.rl.' + rl.id, JSON.stringify(rl));
+  };
+
+});
+
+sanguApp.filter('prettyTime', function() {
+  return function(str) {
+    if (str == null) return null;
+    return new Date(parseInt(str)).toLocaleTimeString();
+  };
+});
