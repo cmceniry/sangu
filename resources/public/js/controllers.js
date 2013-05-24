@@ -297,4 +297,27 @@ sanguApp.controller('RunCtrl', function($scope, $location, $routeParams, Runlist
     return doneP ? "doneTrue" : "";
   };
 
+  $scope.downloadSummary = function() {
+    var rl = {
+      'id' : $scope.runlist.id,
+      'checklistId': $scope.runlist.checklistId,
+      'name': $scope.runlist.name,
+      'startTime': $scope.runlist.startTime,
+      'steps' : []
+    };
+    $scope.runlist.steps.forEach(function(s) {
+      rl.steps.push({
+        'text': s.text,
+        'full': s.full,
+        'doneP': s.doneP,
+        'doneTs': s.doneTs
+      });
+    });
+    var rlblob = new Blob([JSON.stringify(rl, undefined, 2)], {'type':'application/json'});
+    var dl = document.createElement("a");
+    dl.href = window.webkitURL.createObjectURL(rlblob);
+    dl.download = "";
+    dl.click();
+  };
+
 });

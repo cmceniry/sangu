@@ -10,6 +10,9 @@
               <span ng-class="strikeClass(step.doneP)">{{step.text}}</span>
             </div>
           </li>
+          <li>
+            <button ng-show="runlist.steps.length == currentStep" class="btn btn-mini btn-primary" ng-click="downloadSummary()">Download Summary</button>
+          </li>
         </ul>
       </section>
 
