@@ -1,7 +1,8 @@
 
       <section id="main" ng-show="runlist != null">
         <h1>{{runlist.name}}</h1>
-	<h1>Steps</h1>
+        <button class="btn btn-primary" ng-click="doCancel()">Cancel</button>
+        <h1>Steps</h1>
         <ul id="run-list">
           <li ng-repeat="step in runlist.steps">
             <div id="run-info-text">

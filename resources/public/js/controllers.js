@@ -332,4 +332,9 @@ sanguApp.controller('RunCtrl', function($scope, $location, $routeParams, Runlist
     dl.click();
   };
 
+  $scope.doCancel = function() {
+    Runlist.remove($scope.runlist.id);
+    $location.path("/list/" + $scope.runlist.checklistId);
+  };
+
 });
