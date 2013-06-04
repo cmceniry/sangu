@@ -7,14 +7,37 @@
     <link rel="shortcut icon" href="about:blank">
   </head>
   <body>
-    <section id="title">
-      <h1>SANGU</h1>
-    </section>
-    <section id="search" ng-controller="SearchCtrl">
-      <ng-include src="'partials/search.html'">
-    </section>
-    <section id="sangu" ng-controller="ListCtrl" ng-view>
-    </section>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Sangu</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="http://github.com/cmceniry/sangu">About</a></li>
+              <li><a href="http://github.com/cmceniry">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav" ng-controller="SearchCtrl">
+            <ng-include src="'partials/search.html'">
+          </div>
+        </div>
+        <div class="span9" ng-controller="ListCtrl" ng-view>
+        </div>
+      </div>
+    </div>
+
+    <hr/>
+    <footer>
+      <p>&copy; Mac 2013</p>
+    </footer>
+
     <script src="components/angular.js"></script>
     <script src="components/wiky.js"></script>
     <script src="js/util.js"></script>

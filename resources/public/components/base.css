@@ -5,6 +5,8 @@ html {
 }
 
 body {
+	padding-top: 60px;
+	padding-bottom: 40px;
         font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
         line-height: 1.4em;
         //background: #eaeaea url('bg.png');
