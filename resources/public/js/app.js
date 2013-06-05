@@ -34,6 +34,7 @@ sanguApp.service('Checklist', function() {
   this.list = function() {
     var result = [];
     var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    if (cllist == null) cllist = [];
     cllist.forEach( function(id) {
       var cl = JSON.parse(localStorage.getItem('sangu.cl.' + id));
       result.push({
@@ -51,6 +52,7 @@ sanguApp.service('Checklist', function() {
   this.add = function(cl) {
     var clString = JSON.stringify(cl);
     var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    if (cllist == null) cllist = [];
     cllist.push(cl.id);
     var cllistString = JSON.stringify(cllist);
     localStorage.setItem('sangu.cl.' + cl.id, clString);
@@ -64,6 +66,7 @@ sanguApp.service('Checklist', function() {
 
   this.remove = function(id) {
     var cllist = JSON.parse(localStorage.getItem('sangu.cllist'));
+    if (cllist == null) cllist = [];
     var idx = cllist.indexOf(id);
     if (idx>=0) {
       cllist.splice(idx,1);

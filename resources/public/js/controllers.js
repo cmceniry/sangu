@@ -143,12 +143,13 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
   };
 
   $scope.addChecklist = function() {
-    Checklist.add({
+    var cl = {
       id: Checklist.generateId(),
       name: $scope.checklist_name,
       steps: []
-    });
-    $location.path( "/edit/" + id );
+    };
+    Checklist.add(cl);
+    $location.path( "/edit/" + cl.id );
   };
 
   $scope.download = function() {
