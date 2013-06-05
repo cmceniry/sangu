@@ -64,7 +64,6 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
   }
 
   $scope.addStep = function() {
-    console.log("Submitting");
     if (!$scope.newStep.text.length && !$scope.newStep.full.length) {
       return;
     }
@@ -178,7 +177,6 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
       var fileToLoad = element.files[0];
       var fileReader = new FileReader();
       fileReader.onload = function(fileLoadedEvent)  {
-        console.log(fileLoadedEvent.target.result);
         var textFromFileLoaded = fileLoadedEvent.target.result;
         $scope.fileinfo = textFromFileLoaded;
         $scope.$apply();
@@ -203,10 +201,10 @@ sanguApp.controller('ListCtrl', function($scope, $location, $routeParams, Data, 
           });
         });
         Checklist.add(rs);
-        $location.path( "/edit/" + id );
+        $location.path( "/edit/" + rs.id );
       }
     } catch (err) {
-      console.log("Unable to parse");
+      console.log("Unable to parse: " + err);
     }
   };
 
